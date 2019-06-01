@@ -25,6 +25,8 @@ class Getter():
                 callback = self.crawler.__CrawlFunc__[callback_label]
                 # 获取代理
                 proxies = self.crawler.get_proxies(callback)
+                print("111111111111111111111111111111111111111111111111111111111")
                 sys.stdout.flush()
                 for proxy in proxies:
                     self.redis.add(proxy)
+

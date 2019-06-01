@@ -27,8 +27,9 @@ class RedisClient(object):
             print('代理不符合规范', proxy, '丢弃')
             return
         if not self.db.zscore(REDIS_KEY, proxy):
-            return self.db.zadd(REDIS_KEY, score, proxy)
-    
+            # return self.db.zadd(REDIS_KEY,score,proxy)
+            return self.db.zadd(REDIS_KEY, {proxy: score})
+
     def random(self):
         """
         随机获取有效代理，首先尝试获取最高分数代理，如果不存在，按照排名获取，否则异常

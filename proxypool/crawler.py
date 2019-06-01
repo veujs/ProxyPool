@@ -82,14 +82,14 @@ class Crawler(object, metaclass=ProxyMetaclass):
                 find_trs = re.compile('<tr class.*?>(.*?)</tr>', re.S)
                 trs = find_trs.findall(html)
                 for tr in trs:
-                    find_ip = re.compile('<td>(\d+\.\d+\.\d+\.\d+)</td>') 
+                    find_ip = re.compile('<td>(\d+\.\d+\.\d+\.\d+)</td>')
                     re_ip_address = find_ip.findall(tr)
                     find_port = re.compile('<td>(\d+)</td>')
                     re_port = find_port.findall(tr)
                     for address,port in zip(re_ip_address, re_port):
                         address_port = address+':'+port
                         yield address_port.replace(' ','')
-    
+
     def crawl_ip3366(self):
         for i in range(1, 4):
             start_url = 'http://www.ip3366.net/?stype=1&page={}'.format(i)
@@ -105,7 +105,7 @@ class Crawler(object, metaclass=ProxyMetaclass):
                     for address,port in zip(re_ip_address, re_port):
                         address_port = address+':'+port
                         yield address_port.replace(' ','')
-    
+
     def crawl_iphai(self):
         start_url = 'http://www.iphai.com/'
         html = get_page(start_url)
